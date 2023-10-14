@@ -5,6 +5,28 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const likeButtons = document.querySelectorAll('.like-glyph');
+
+  likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener('click', () => {
+      mimicServerCall() // Simulate a server call
+        .then(() => {
+          if (likeButton.innerText === EMPTY_HEART) {
+            likeButton.innerText = FULL_HEART;
+            likeButton.classList.add('activated-heart');
+          } else {
+            likeButton.innerText = EMPTY_HEART;
+            likeButton.classList.remove('activated-heart');
+          }
+        })
+        .catch((error) => {
+          // Handle the error here, e.g., display an error message to the user
+          console.error('Error:', error);
+        });
+    });
+  });
+});
 
 
 //------------------------------------------------------------------------------
